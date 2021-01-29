@@ -1,5 +1,5 @@
 class WorkoutsController < ApplicationController
-  before_action :find_workout, only: [:show, :edit, :update]
+  before_action :find_workout, only: [:show, :edit, :update, :destroy]
 
   def index
     @workouts = Workout.all
@@ -34,6 +34,12 @@ class WorkoutsController < ApplicationController
     end
   end
 
+  def destroy
+    @workout.destroy
+    flash[:notice] = "#{@workout.name} was deleted."
+    redirect_to workouts_path
+  end
+
 
 
 
@@ -48,8 +54,4 @@ class WorkoutsController < ApplicationController
   def workout_params
     params.require(:workout).permit(:name, :sets, :reps)
   end
-
-
-
-
 end
