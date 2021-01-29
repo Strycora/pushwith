@@ -3,3 +3,5 @@
 <p>Reps: <%= @workout.reps %></p>
 
 <%= link_to "Edit", edit_workout_path(@workout)%>
+
+<%= link_to "Delete", workout_path(@workout), method: "delete" %>

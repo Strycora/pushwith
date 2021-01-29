@@ -1,5 +1,5 @@
 class WorkoutsController < ApplicationController
-  before_action :find_workout, only: [:show]
+  before_action :find_workout, only: [:show, :edit, :update]
 
   def index
     @workouts = Workout.all
@@ -33,7 +33,7 @@ class WorkoutsController < ApplicationController
       render :edit
     end
   end
-  
+
 
 
 
