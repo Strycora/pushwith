@@ -1,4 +1,5 @@
 class WorkoutsController < ApplicationController
+  before_action :find_workout, only: [:show]
 
   def index
     @workouts = Workout.all
@@ -10,6 +11,26 @@ class WorkoutsController < ApplicationController
   def new
     @workout = Workout.new
   end
+
+  def create
+    @workout = Workout.new(workout_params)
+    if @workout.save
+      redirect_to workouts_path
+    else
+      render :new
+    end
+  end
+
+
+
+
+  private
+
+  def find_workout 
+    @workout = Workout.find_by_id(params[:id])
+  end
+
+
 
 
 end
