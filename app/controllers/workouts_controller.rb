@@ -30,6 +30,10 @@ class WorkoutsController < ApplicationController
     @workout = Workout.find_by_id(params[:id])
   end
 
+  def workout_params
+    params.require(:workout).permit(:name, :sets, :reps)
+  end
+
 
 
 
