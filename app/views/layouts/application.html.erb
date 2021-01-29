@@ -16,6 +16,15 @@
   </head>
 
   <body>
+    <nav>
+      <ul>
+        <li><%= link_to("Home", root_path) %></li>
+        <li><%=link_to("Workouts", workouts_path)%></li>
+        <li><%= link_to("Create Workout", new_workout_path)%></li>
+      </ul>
+    </nav>
+
+
   <%= render 'layouts/errors' %>
     <%= yield %>
   </body>
