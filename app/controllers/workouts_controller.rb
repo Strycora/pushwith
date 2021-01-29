@@ -17,9 +17,11 @@ class WorkoutsController < ApplicationController
     if @workout.save
       redirect_to workouts_path
     else
+      flash.now[:error] = @workout.errors.full_messages
       render :new
     end
   end
+
 
 
 
