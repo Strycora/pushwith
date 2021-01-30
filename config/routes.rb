@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :workout_groups
   root(to: "static#welcome")
   resources :workouts
   
