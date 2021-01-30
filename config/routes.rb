@@ -10,4 +10,6 @@ Rails.application.routes.draw do
 
   delete "/logout", to: "sessions#destroy", as: "destroy_user_session"
 
+  match '/auth/:google_oauth2/callback' => 'sessions#google', via:[:get, :post]
+
 end
