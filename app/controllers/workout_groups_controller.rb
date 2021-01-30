@@ -1,5 +1,5 @@
 class WorkoutGroupsController < ApplicationController
-  before_action :find_workout, only: [:show, :edit, :update, :destroy]
+  before_action :find_workout_group, only: [:show, :edit, :update, :destroy]
 
   def index
     @workout_groups = WorkoutGroup.all
@@ -14,7 +14,7 @@ class WorkoutGroupsController < ApplicationController
 
   def create
     @workout_group = WorkoutGroup.new(workout_group_params)
-    if @workout.save
+    if @workout_group.save
       redirect_to workout_groups_path
     else
       flash.now[:error] = @workout_group.errors.full_messages
@@ -37,12 +37,8 @@ class WorkoutGroupsController < ApplicationController
   def destroy
     @workout_group.destroy
     flash[:notice] = "#{@workout_group.name} was deleted."
-    redirect_to workouts_path
+    redirect_to workout_groups_path
   end
-
-
-
-
 
 
   private
@@ -51,7 +47,7 @@ class WorkoutGroupsController < ApplicationController
     @workout_group = WorkoutGroup.find_by_id(params[:id])
   end
 
-  def workout_params
-    params.require(:workoutgroup).permit(:name)
+  def workout_group_params
+    params.require(:workout_group).permit(:name)
   end
 end

@@ -5,8 +5,11 @@ module ApplicationHelper
         content_tag("li") do 
           link_to("Workouts", workouts_path)
         end +
+        content_tag("li") do 
+          link_to("Workout Groups", workout_groups_path)
+        end +
         content_tag("li") do
-          link_to("Create Workout", new_workout_path)
+          link_to("Create Workout Group", new_workout_group_path)
         end +
         content_tag("li") do 
           link_to("Logout", destroy_user_session_path, method: "DELETE")

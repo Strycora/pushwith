@@ -1,0 +1,9 @@
+<h1>Workout List</h1>
+
+<ul>
+  <% @workout_groups.each do |wg| %> 
+    <li><%= link_to wg.name, workout_group_path(wg) %></li>
+  <% end %>
+</ul>
+
+<p> <%= link_to "Create Workout Group", new_workout_group_path %> </p>
