@@ -1,5 +1,9 @@
 <h1><%= @workout_group.name %></h1>
 
+<% @user_groups.each do |ug| %>
+ <p> <%= ug.user.username %>, <%= ug.role %></p>
+<% end %>
+
 <%= link_to "Edit", edit_workout_group_path(@workout_group)%>
 
 <%= link_to "Delete", workout_group_path(@workout_group), method: "delete" %>

@@ -6,6 +6,7 @@ class WorkoutGroupsController < ApplicationController
   end
 
   def show
+    @user_groups = @workout_group.user_groups.all
   end
 
   def new
@@ -14,7 +15,9 @@ class WorkoutGroupsController < ApplicationController
 
   def create
     @workout_group = WorkoutGroup.new(workout_group_params)
+    binding.pry
     if @workout_group.save
+
       redirect_to workout_groups_path
     else
       flash.now[:error] = @workout_group.errors.full_messages
@@ -48,6 +51,6 @@ class WorkoutGroupsController < ApplicationController
   end
 
   def workout_group_params
-    params.require(:workout_group).permit(:name)
+    params.require(:workout_group).permit(:name, :user_groups, user_groups_attributes: [:user_id, :role])
   end
 end
