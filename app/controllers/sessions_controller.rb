@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to workouts_path
+      redirect_to workout_groups_path
     else
       flash.now[:error] = ["Invalid Username Or Password"]
       render :new
@@ -24,8 +24,8 @@ class SessionsController < ApplicationController
       user.password = SecureRandom.hex(10)
     end
     if @user && @user.id
-      session[:user_id]= @user.id
-      redirect_to workouts_path
+      login_user
+      redirect_to workout_groups_path
     else
       redirect_to "/login"
     end

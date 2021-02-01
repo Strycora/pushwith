@@ -15,7 +15,6 @@ class WorkoutGroupsController < ApplicationController
 
   def create
     @workout_group = WorkoutGroup.new(workout_group_params)
-    binding.pry
     if @workout_group.save
 
       redirect_to workout_groups_path
@@ -38,6 +37,8 @@ class WorkoutGroupsController < ApplicationController
   end
 
   def destroy
+    
+    @workout_group.user_groups.destroy
     @workout_group.destroy
     flash[:notice] = "#{@workout_group.name} was deleted."
     redirect_to workout_groups_path
@@ -51,6 +52,6 @@ class WorkoutGroupsController < ApplicationController
   end
 
   def workout_group_params
-    params.require(:workout_group).permit(:name, :user_groups, user_groups_attributes: [:user_id, :role])
+    params.require(:workout_group).permit(:name, :user_groups, user_groups_attributes: [:user_id, :mantra])
   end
 end

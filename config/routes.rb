@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
-  resources :workout_groups
+  
   root(to: "static#welcome")
-  resources :workouts
 
-  resources :user_groups, only: [:new, :create]
+  resources :workout_groups do 
+    resources :workouts
+  end
+
+  resources :user_groups#, only: [:new, :create]
   
   get "/signup", to: "users#new", as: "signup"
   post "/signup", to: "users#create"

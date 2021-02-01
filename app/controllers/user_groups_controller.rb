@@ -1,9 +1,9 @@
 class UserGroupsController < ApplicationController
   before_action :find_user_group, only: [:show, :edit, :update, :destroy]
 
-  # def index
-  #   @workout_groups = WorkoutGroup.all
-  # end
+  def index
+    @user_groups = UserGroup.all
+  end
 
   # def show
   # end
@@ -16,7 +16,7 @@ class UserGroupsController < ApplicationController
   def create
     @user_group = UserGroup.new(user_group_params)
     if @user_group.save
-      redirect_to user_groups_path
+      redirect_to workout_groups_path
     else
       flash.now[:error] = @user_group.errors.full_messages
       render :new
@@ -47,6 +47,6 @@ class UserGroupsController < ApplicationController
   end
 
   def user_group_params
-    params.require(:user_group).permit(:mantra)
+    params.require(:user_group).permit(:mantra, :workout_group_id, :user_id)
   end
 end

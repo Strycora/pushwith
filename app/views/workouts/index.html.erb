@@ -2,8 +2,8 @@
 
 <ul>
   <% @workouts.each do |workout| %> 
-    <li><%= link_to workout.name, workout_path(workout) %></li>
+    <li><%= link_to workout.name, workout_group_workout_path(workout) %></li>
   <% end %>
 </ul>
 
-<p> <%= link_to "Create Workout", new_workout_path %> </p>
+<%= link_to "Create Workout for #{@workout_group.name}", new_workout_group_workout_path%>

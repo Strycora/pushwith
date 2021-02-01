@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_31_011029) do
+ActiveRecord::Schema.define(version: 2021_02_01_030303) do
 
   create_table "user_groups", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -41,8 +41,11 @@ ActiveRecord::Schema.define(version: 2021_01_31_011029) do
     t.integer "reps"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "workout_group_id", null: false
+    t.index ["workout_group_id"], name: "index_workouts_on_workout_group_id"
   end
 
   add_foreign_key "user_groups", "users"
   add_foreign_key "user_groups", "workout_groups"
+  add_foreign_key "workouts", "workout_groups"
 end

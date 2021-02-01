@@ -10,8 +10,8 @@
   <%= f.fields_for :user_groups, @workout_group.user_groups.build do |ugbuild|%>
     <div>
       <%= ugbuild.hidden_field :user_id, :value=> current_user.id%>
-      <%= ugbuild.label :mantra%>
-      <%= ugbuild.text_field :mantra%>
+      <%= ugbuild.label :mantra %>
+      <%= ugbuild.text_field :mantra %>
       <%end%>
 
     </div>

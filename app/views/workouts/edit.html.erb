@@ -1,6 +1,6 @@
 <h3> Edit Workout </h3>
 
-<%= form_for @workout do |f| %>
+<%= form_for [@workout_group, @workout] do |f| %>
   <div>
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -13,6 +13,8 @@
     <%= f.label :reps %>
     <%= f.number_field :reps %>
   </div>
+
+  <%= f.hidden_field :workout_group_id %>
 
   <%= f.submit "Update Workout" %>
   <% end %>

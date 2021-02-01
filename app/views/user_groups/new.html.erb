@@ -1,7 +1,7 @@
 <h3> Join a Workout Group </h3>
 
 
-<%= form_for @user_group, url: new_user_group_path do |f| %>
+<%= form_for @user_group, url: user_groups_path do |f| %>
 <%= f.hidden_field :user_id, :value=> current_user.id%>
 
 <h4>Which Workout Group would you like to join?</h4>
