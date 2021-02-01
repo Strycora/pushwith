@@ -1,5 +1,5 @@
 class WorkoutsController < ApplicationController
-  before_action :find_workout_group, only: [:index, :new, :show, :create, :edit]
+  before_action :find_workout_group, only: [ :index, :new, :show, :create, :edit]
   before_action :find_workout, only: [:show, :edit, :update, :destroy]
 
  
@@ -24,10 +24,8 @@ class WorkoutsController < ApplicationController
   end
 
   def index
-    # if @workout_group
     @workouts = @workout_group.workouts
-    # end
-    #@workouts = Workout.all
+
   end
 
   def show
@@ -63,7 +61,7 @@ class WorkoutsController < ApplicationController
   end  
   
   def find_workout_group
-    @workout_group = WorkoutGroup.find_by(params[:workout_group_id])
+    @workout_group = WorkoutGroup.find(params[:workout_group_id])
   
   end
       
