@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :workouts
   end
 
+
   resources :user_groups#, only: [:new, :create]
   
   get "/signup", to: "users#new", as: "signup"

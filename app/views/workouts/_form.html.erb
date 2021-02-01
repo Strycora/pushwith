@@ -1,0 +1,18 @@
+<%= form_for [workout_group, workout] do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :sets %>
+    <%= f.number_field :sets %>
+  </div>
+  <div>
+    <%= f.label :reps %>
+    <%= f.number_field :reps %>
+  </div>
+
+  <%= f.hidden_field :workout_group_id %>
+
+  <%= f.submit button_name %>
+  <% end %>

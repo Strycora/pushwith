@@ -2,6 +2,10 @@
 <p>Sets: <%= @workout.sets %></p>
 <p>Reps: <%= @workout.reps %></p>
 
-<%= link_to "Edit", edit_workout_path(@workout)%>
+<%= link_to "Edit", edit_workout_group_workout_path(@workout_group, @workout)%>
 
-<%= link_to "Delete", workout_path(@workout), method: "delete" %>
+<%= link_to "Delete", workout_group_workout_path(@workout_group, @workout), method: "delete" %>
+<br>
+<%= link_to "Workout List", workout_group_workouts_path(@workout_group)%>
+<br>
+<%= link_to "Workout Group", workout_group_path(@workout_group) %>

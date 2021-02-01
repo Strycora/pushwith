@@ -1,16 +1,8 @@
 class WorkoutsController < ApplicationController
-  before_action :find_workout_group, only: [:index, :new, :show, :create]
+  before_action :find_workout_group, only: [:index, :new, :show, :create, :edit]
   before_action :find_workout, only: [:show, :edit, :update, :destroy]
 
-  def index
-    if @workout_group
-    @workouts = @workout_group.workouts
-    end
-    @workouts = Workout.all
-  end
-
-  def show
-  end
+ 
 
   def new
       @workout = @workout_group.workouts.build
@@ -29,6 +21,16 @@ class WorkoutsController < ApplicationController
       flash.now[:error] = @workout.errors.full_messages
       render :new
     end
+  end
+
+  def index
+    # if @workout_group
+    @workouts = @workout_group.workouts
+    # end
+    #@workouts = Workout.all
+  end
+
+  def show
   end
 
   def edit
@@ -61,7 +63,7 @@ class WorkoutsController < ApplicationController
   end  
   
   def find_workout_group
-    @workout_group = WorkoutGroup.find(params[:workout_group_id])
+    @workout_group = WorkoutGroup.find_by(params[:workout_group_id])
   
   end
       

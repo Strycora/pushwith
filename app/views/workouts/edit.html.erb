@@ -1,20 +1,3 @@
 <h3> Edit Workout </h3>
 
-<%= form_for [@workout_group, @workout] do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :sets %>
-    <%= f.number_field :sets %>
-  </div>
-  <div>
-    <%= f.label :reps %>
-    <%= f.number_field :reps %>
-  </div>
-
-  <%= f.hidden_field :workout_group_id %>
-
-  <%= f.submit "Update Workout" %>
-  <% end %>
+<%= render partial: "form", locals: { workout_group: @workout_group, workout: @workout, button_name: "Update Workout"} %>
