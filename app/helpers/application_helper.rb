@@ -11,6 +11,9 @@ module ApplicationHelper
         content_tag("li") do
           link_to("Create Workout Group", new_workout_group_path)
         end +
+        content_tag("li") do
+          link_to("Join Workout Group", new_user_group_path)
+        end +
         content_tag("li") do 
           link_to("Logout", destroy_user_session_path, method: "DELETE")
         end
