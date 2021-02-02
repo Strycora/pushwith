@@ -13,5 +13,15 @@ class ApplicationController < ActionController::Base
   def login_user
     session[:user_id] = @user.id
   end
-  
+
+  def find_workout 
+    @workout = Workout.find_by_id(params[:id])
+  end
+
+  def find_workout_group 
+    @workout_group = WorkoutGroup.find_by_id(params[:id])
+  end
+
+
+
 end

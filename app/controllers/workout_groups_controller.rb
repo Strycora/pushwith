@@ -1,12 +1,17 @@
 class WorkoutGroupsController < ApplicationController
   before_action :find_workout_group, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_if_not_found, only: [:show, :edit, :update, :destroy]
 
   def index
-    @workout_groups = WorkoutGroup.all
+      @workout_groups = WorkoutGroup.all
   end
 
   def show
-    @user_groups = @workout_group.user_groups.all
+    if @workout_group
+      @user_groups = @workout_group.user_groups.all
+    else
+      redirect_to workout_groups_path
+    end
   end
 
   def new
@@ -53,5 +58,12 @@ class WorkoutGroupsController < ApplicationController
 
   def workout_group_params
     params.require(:workout_group).permit(:name, :user_groups, user_groups_attributes: [:user_id, :mantra])
+  end
+
+  def redirect_if_not_found
+    if !@workout_group
+      flash.now[:error] = "Workout group not found"
+      redirect_to workout_groups_path
+    end
   end
 end
