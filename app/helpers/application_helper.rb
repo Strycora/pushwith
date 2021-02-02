@@ -2,6 +2,9 @@ module ApplicationHelper
   def render_nav_links(signed_in)
     content_tag("ul", class: "right") do
       if signed_in
+        content_tag("li") do
+          "Hello, #{current_user.username}!"
+        end +
         content_tag("li") do 
           link_to("Workout Groups", workout_groups_path)
         end +

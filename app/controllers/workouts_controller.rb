@@ -1,6 +1,8 @@
 class WorkoutsController < ApplicationController
   before_action :find_workout_group, only: [:index, :new, :show, :create, :edit]
   before_action :find_workout, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_if_workout_group_not_found, only: [:index, :show, :edit, :update, :destroy]
+  before_action :redirect_if_workout_not_found, only:[:show, :edit, :update, :destroy]
   before_action :redirect_if_not_in_group, only:[:edit, :update, :destroy]
 
  
@@ -19,7 +21,7 @@ class WorkoutsController < ApplicationController
     if @workout.save
       redirect_to workout_group_workouts_path
     else
-      flash.now[:error] = @workout.errors.full_messages
+      #flash.now[:error] = @workout.errors.full_messages
       render :new
     end
   end
@@ -51,7 +53,7 @@ class WorkoutsController < ApplicationController
 
   def destroy
     @workout.destroy
-    flash[:notice] = "#{@workout.name} was deleted."
+   # flash[:notice] = "#{@workout.name} was deleted."
     redirect_to workout_group_workouts_path
   end
 
@@ -70,12 +72,24 @@ class WorkoutsController < ApplicationController
       @workout_group = WorkoutGroup.find_by(id: params[:workout_group_id])
   end
 
+  def redirect_if_workout_not_found
+    if !@workout
+      flash[:error] = ["Workout not found."]
+      redirect_to workout_group_workouts_path
+    end
+  end
+
   def redirect_if_workout_group_not_found
+    if (@workout && !@workout.workout_group) || !@workout_group
+      flash[:error] = ["Workout Group not found."]
+      redirect_to workout_groups_path
+    end
     
   end
 
   def redirect_if_not_in_group
     if !@workout.workout_group.users.include?(current_user)
+      flash[:error] = ["You are not in #{@workout.workout_group.name}"]
       redirect_to workout_group_workouts_path
     end
   end

@@ -4,7 +4,11 @@ class WorkoutGroupsController < ApplicationController
   before_action :redirect_if_not_in_group, only: [:edit, :update, :destroy]
 
   def index
+    if params[:query]
+      @workout_groups = WorkoutGroup.search(params[:query])
+    else
       @workout_groups = WorkoutGroup.all
+    end
   end
 
   def show
@@ -73,7 +77,7 @@ class WorkoutGroupsController < ApplicationController
 
   def redirect_if_not_found
     if !@workout_group
-      #flash.now[:error] = ["Workout group not found"]
+      flash[:error] = ["Workout group not found"]
       redirect_to workout_groups_path
     end
   end

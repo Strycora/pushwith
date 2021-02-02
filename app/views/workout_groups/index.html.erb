@@ -1,5 +1,11 @@
 <h1>Workout Groups</h1>
 
+<%=form_tag workout_groups_path, method: "GET" do %>
+  <label>Search Workout Groups </label><br>
+  <%= text_field_tag :query %>
+  <%= submit_tag "Search Workout Groups" %>
+<%end%>
+
 <ul>
   <% @workout_groups.each do |wg| %> 
     <li><%= link_to wg.name, workout_group_path(wg) %></li>
