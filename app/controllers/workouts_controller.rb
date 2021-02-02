@@ -1,12 +1,13 @@
 class WorkoutsController < ApplicationController
   before_action :find_workout_group, only: [:index, :new, :show, :create, :edit]
   before_action :find_workout, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_if_not_in_group, only:[:edit, :update, :destroy]
 
  
 
   def new
       @workout = @workout_group.workouts.build
-      #render :new_workout_group_workout
+      redirect_if_not_in_group and return
       render :new
     
    # @workout = Workout.new
@@ -29,12 +30,6 @@ class WorkoutsController < ApplicationController
     else
       redirect_to workout_groups_path
     end
-     
-    # if @workouts
-    #   render :index
-    # else
-    #   redirect_to workout
-    # end
 
   end
 
@@ -72,19 +67,17 @@ class WorkoutsController < ApplicationController
   end  
   
   def find_workout_group
-      #@workout_group = WorkoutGroup.find(params[:workout_group_id])
       @workout_group = WorkoutGroup.find_by(id: params[:workout_group_id])
-
-    # if !@workout_group
-    #   flash.now[:error] = "Workout group not found for workout(s)"
-    #   redirect_to workout_groups_path
-    # else
-     
-    # end
   end
 
   def redirect_if_workout_group_not_found
+    
+  end
 
+  def redirect_if_not_in_group
+    if !@workout.workout_group.users.include?(current_user)
+      redirect_to workout_group_workouts_path
+    end
   end
       
 

@@ -14,13 +14,15 @@ class ApplicationController < ActionController::Base
     session[:user_id] = @user.id
   end
 
-  def find_workout 
-    @workout = Workout.find_by_id(params[:id])
-  end
 
-  def find_workout_group 
-    @workout_group = WorkoutGroup.find_by_id(params[:id])
-  end
+
+  # def find_workout 
+  #   @workout = Workout.find_by_id(params[:id])
+  # end
+
+  # def find_workout_group 
+  #   @workout_group = WorkoutGroup.find_by_id(params[:id])
+  # end
 
 
 
