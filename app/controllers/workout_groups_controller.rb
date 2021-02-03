@@ -22,7 +22,7 @@ class WorkoutGroupsController < ApplicationController
 
   def new
     @workout_group = WorkoutGroup.new
-    3.times { @workout_group.workouts.build} 
+    3.times { @workout_group.workouts.build } 
   end
 
   def create
@@ -66,7 +66,7 @@ class WorkoutGroupsController < ApplicationController
   end
 
   def workout_group_params
-    params.require(:workout_group).permit(:name, :user_groups, user_groups_attributes: [:user_id, :mantra])
+    params.require(:workout_group).permit(:name, :user_groups, workouts_attributes: [:name, :sets, :reps], user_groups_attributes: [:user_id, :mantra])
   end
 
   

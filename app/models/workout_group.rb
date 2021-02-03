@@ -5,6 +5,7 @@ class WorkoutGroup < ApplicationRecord
   validates :name, presence: true
 
   accepts_nested_attributes_for :user_groups
+  accepts_nested_attributes_for :workouts
 
   def self.search(query)
     where("name LIKE ?", "%#{query}%")

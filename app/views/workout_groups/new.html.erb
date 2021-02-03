@@ -15,6 +15,22 @@
       <%end%>
     </div>
 
+  <h3> Create some workouts for your group!</h3>
+   <%= f.fields_for :workouts, @workout_group.workouts.build do |wb|%>
+      <div>
+    <%= wb.label :name %>
+    <%= wb.text_field :name %>
+    </div>
+    <div>
+      <%= wb.label :sets %>
+      <%= wb.number_field :sets %>
+    </div>
+    <div>
+      <%= wb.label :reps %>
+      <%= wb.number_field :reps %>
+    </div>
+    <%end%>
+
 
   <%= f.submit "Create Workout Group" %>
   <% end %>
