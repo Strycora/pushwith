@@ -36,6 +36,12 @@ class WorkoutsController < ApplicationController
   end
 
   def show
+    if @workout.workout_group_id != @workout_group.id
+      flash[:error] = ["Workout is not for this group"]
+      redirect_to workout_group_path(@workout_group)
+    end
+    
+
     
   end
 

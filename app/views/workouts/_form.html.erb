@@ -1,14 +1,5 @@
 <%= form_for [workout_group, workout] do |f| %>
-<% if workout.errors.any? %>
-   <div id="error_explanation">
-    <h4>Error:</h4>
-     <ul>
-       <% workout.errors.full_messages.each do |message| %>
-         <li><%= message %></li>
-       <% end %>
-     </ul>
-   </div>
- <% end %>
+  <%= render partial: '/layouts/formerrors', locals: {item: workout } %>
 
   <div>
     <%= f.label :name %>
