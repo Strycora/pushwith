@@ -1,6 +1,7 @@
 class WorkoutGroupsController < ApplicationController
   before_action :find_workout_group, only: [:show, :edit, :update, :destroy]
   before_action :redirect_if_not_found, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_if_not_logged_in, only: [:new, :edit, :update, :destroy]
   before_action :redirect_if_not_in_group, only: [:edit, :update, :destroy]
 
   def index
@@ -21,6 +22,7 @@ class WorkoutGroupsController < ApplicationController
 
   def new
     @workout_group = WorkoutGroup.new
+    3.times { @workout_group.workouts.build} 
   end
 
   def create
@@ -67,9 +69,11 @@ class WorkoutGroupsController < ApplicationController
     params.require(:workout_group).permit(:name, :user_groups, user_groups_attributes: [:user_id, :mantra])
   end
 
+  
+
   def redirect_if_not_in_group
     if !@workout_group.users.include?(current_user)
-    
+      flash[:error] = ["You need to be in the group to do that."]
       redirect_to workout_group_path
     end
   end
