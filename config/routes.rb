@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   
-  root(to: "static#welcome")
+  root to: "sessions#welcome"
 
   resources :workout_groups do 
     resources :workouts
