@@ -1,0 +1,15 @@
+    <%= f.fields_for :workouts, workout_group.workouts do |wb|%> 
+      <div>
+    <%= wb.label :name %>
+    <%= wb.text_field :name %>
+    </div>
+    <div>
+      <%= wb.label :sets %>
+      <%= wb.number_field :sets %>
+    </div>
+    <div>
+      <%= wb.label :reps %>
+      <%= wb.number_field :reps %>
+    </div>
+    <hr>
+  <% end %>

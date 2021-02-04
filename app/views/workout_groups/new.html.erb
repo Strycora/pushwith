@@ -1,37 +1,17 @@
 <h3> Create Workout Group </h3>
 
-<%= form_for @workout_group do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+<%= form_for @workout_group do |f| %>  
+
+ <%= render partial: "form", locals: {f: f, button_name: "Create Workout Group"} %>
 
   <h3> What is your mantra? </h3>
-  <%= f.fields_for :user_groups, @workout_group.user_groups.build do |ugbuild|%>
-    <div>
-      <%= ugbuild.hidden_field :user_id, :value=> current_user.id%>
-      <%= ugbuild.label :mantra %>
-      <%= ugbuild.text_field :mantra %>
-      <%end%>
-    </div>
+ 
+    <%= render partial: "fields_user", locals: {f: f, workout_group: @workout_group} %>
+
 
   <h3> Create some workouts for your group!</h3>
-   <%= f.fields_for :workouts, @workout_group.workouts do |wb|%>
-      <div>
-    <%= wb.label :name %>
-    <%= wb.text_field :name %>
-    </div>
-    <div>
-      <%= wb.label :sets %>
-      <%= wb.number_field :sets %>
-    </div>
-    <div>
-      <%= wb.label :reps %>
-      <%= wb.number_field :reps %>
-    </div>
-    <hr>
+    <%= render partial: "fields_workout", locals: {workout_group: @workout_group, f: f} %>
 
-    <%end%>
 
 
   <%= f.submit "Create Workout Group" %>
