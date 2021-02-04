@@ -1,9 +1,10 @@
 class WorkoutsController < ApplicationController
   before_action :find_workout_group, only: [:index, :new, :show, :create, :edit]
   before_action :find_workout, only: [:show, :edit, :update, :destroy]
-  before_action :redirect_if_workout_group_not_found, only: [:index, :show, :edit, :update, :destroy]
+  before_action :redirect_if_workout_group_not_found, only: [:index, :show, :edit]
   before_action :redirect_if_workout_not_found, only:[:show, :edit, :update, :destroy]
   before_action :redirect_if_not_in_group, only:[:edit, :update, :destroy]
+  before_action :redirect_if_not_workout_group_match, only: [:show, :edit]
 
  
 
@@ -40,7 +41,7 @@ class WorkoutsController < ApplicationController
       flash[:error] = ["Workout is not for this group"]
       redirect_to workout_group_path(@workout_group)
     end
-    
+
 
     
   end
@@ -59,7 +60,7 @@ class WorkoutsController < ApplicationController
 
   def destroy
     @workout.destroy
-   # flash[:notice] = "#{@workout.name} was deleted."
+    flash[:notice] = "#{@workout.name} was deleted."
     redirect_to workout_group_workouts_path
   end
 
@@ -87,10 +88,18 @@ class WorkoutsController < ApplicationController
 
   def redirect_if_workout_group_not_found
     if (@workout && !@workout.workout_group) || !@workout_group
+      binding.pry
       flash[:error] = ["Workout Group not found."]
       redirect_to workout_groups_path
     end
     
+  end
+
+  def redirect_if_not_workout_group_match
+    if @workout.workout_group_id != @workout_group.id
+      flash[:error] = ["Workout is not for this group"]
+      redirect_to workout_group_path(@workout_group)
+    end
   end
 
   def redirect_if_not_in_group

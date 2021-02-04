@@ -1,6 +1,7 @@
 <h3>Edit Workout Group </h3>
 
   <%= form_for @workout_group do |f| %> 
+   <%= render partial: '/layouts/formerrors', locals: {item: @workout_group } %>
    <%= render partial: "form", locals: {f: f, workout_group: @workout_group} %>
 
   <%= f.submit "Update Workout Group" %>
