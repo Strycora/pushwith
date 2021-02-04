@@ -1,11 +1,11 @@
 class WorkoutsController < ApplicationController
   before_action :redirect_if_not_logged_in, only: [:index, :show, :new, :edit, :update, :destroy]
-  before_action :find_workout_group, only: [:index, :new, :show, :create, :edit]
+  before_action :find_workout_group, only: [:index, :new, :show, :create, :edit, :update]
   before_action :find_workout, only: [:show, :edit, :update, :destroy]
   before_action :redirect_if_workout_group_not_found, only: [:index, :show, :edit]
   before_action :redirect_if_workout_not_found, only:[:show, :edit, :update, :destroy]
   before_action :redirect_if_not_in_group, only:[:edit, :update, :destroy]
-  before_action :redirect_if_not_workout_group_match, only: [:show, :edit]
+  before_action :redirect_if_not_workout_group_match, only: [:show, :edit, :update, :destroy]
 
  
 
@@ -80,7 +80,6 @@ class WorkoutsController < ApplicationController
 
   def redirect_if_workout_group_not_found
     if (@workout && !@workout.workout_group) || !@workout_group
-      binding.pry
       flash[:error] = ["Workout Group not found."]
       redirect_to workout_groups_path
     end

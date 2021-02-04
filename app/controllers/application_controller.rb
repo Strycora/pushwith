@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
     !!session[:user_id]
   end
 
+  def fallback
+    redirect_to root_path
+  end
+
   def current_user
     User.find_by_id(session[:user_id]) if user_signed_in?
   end
@@ -20,17 +24,5 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
-
-
-
-  # def find_workout 
-  #   @workout = Workout.find_by_id(params[:id])
-  # end
-
-  # def find_workout_group 
-  #   @workout_group = WorkoutGroup.find_by_id(params[:id])
-  # end
-
-
 
 end

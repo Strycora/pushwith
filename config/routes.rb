@@ -19,4 +19,6 @@ Rails.application.routes.draw do
 
   match '/auth/:google_oauth2/callback' => 'sessions#google', via:[:get, :post]
 
+  match '*path' => 'application#fallback', via: :all
+
 end

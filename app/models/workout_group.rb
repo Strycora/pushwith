@@ -6,7 +6,7 @@ class WorkoutGroup < ApplicationRecord
 
 
   accepts_nested_attributes_for :user_groups
-  accepts_nested_attributes_for :workouts
+  accepts_nested_attributes_for :workouts, reject_if: :all_blank
 
   def self.search(query)
     where("name LIKE ?", "%#{query}%")
