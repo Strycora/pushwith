@@ -31,7 +31,7 @@ class WorkoutGroupsController < ApplicationController
 
       redirect_to workout_groups_path
     else
-      flash.now[:error] = @workout_group.errors.full_messages
+      #flash.now[:error] = @workout_group.errors.full_messages
       render :new
     end
   end
@@ -45,7 +45,7 @@ class WorkoutGroupsController < ApplicationController
     if @workout_group.update(workout_group_params)
       redirect_to workout_group_path 
     else
-      flash.now[:error] = @workout_group.errors.full_messages
+      #flash.now[:error] = @workout_group.errors.full_messages
       render :edit
     end
   end
