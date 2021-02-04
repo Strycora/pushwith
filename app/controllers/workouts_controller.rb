@@ -1,4 +1,5 @@
 class WorkoutsController < ApplicationController
+  before_action :redirect_if_not_logged_in, only: [:index, :show, :new, :edit, :update, :destroy]
   before_action :find_workout_group, only: [:index, :new, :show, :create, :edit]
   before_action :find_workout, only: [:show, :edit, :update, :destroy]
   before_action :redirect_if_workout_group_not_found, only: [:index, :show, :edit]

@@ -1,7 +1,7 @@
 class WorkoutGroupsController < ApplicationController
   before_action :find_workout_group, only: [:show, :edit, :update, :destroy]
   before_action :redirect_if_not_found, only: [:show, :edit, :update, :destroy]
-  before_action :redirect_if_not_logged_in, only: [:new, :edit, :update, :destroy]
+  before_action :redirect_if_not_logged_in, only: [:index, :show, :new, :edit, :update, :destroy]
   before_action :redirect_if_not_in_group, only: [:edit, :update, :destroy]
 
   def index
@@ -15,7 +15,7 @@ class WorkoutGroupsController < ApplicationController
   def show
     if @workout_group
       @user_groups = @workout_group.user_groups
-      
+
       @user_group = @workout_group.find_current_user_group(current_user)
     else
       redirect_to workout_groups_path
