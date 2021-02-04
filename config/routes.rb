@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :user_groups#, only: [:new, :create]
+  resources :user_groups, only: [:new, :create, :destroy]
   
   get "/signup", to: "users#new", as: "signup"
   post "/signup", to: "users#create"

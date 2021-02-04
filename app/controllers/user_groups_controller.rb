@@ -1,16 +1,8 @@
 class UserGroupsController < ApplicationController
-  before_action :find_user_group, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @user_groups = UserGroup.all
-  end
-
-  # def show
-  # end
+  before_action :find_user_group, only: [:destroy]
 
   def new
     @user_group = UserGroup.new
-    # @user_group.user_id = current_user.user_id
   end
 
   def create
@@ -22,18 +14,6 @@ class UserGroupsController < ApplicationController
       render :new
     end
   end
-
-  # def edit
-  # end
-
-  # def update
-  #   # if @user_group.update(user_group_params)
-  #   #   redirect_to user_group_path 
-  #   # else
-  #   #   flash.now[:error] = @user_group.errors.full_messages
-  #   #   render :edit
-  #   # end
-  # end
 
   def destroy
     @user_group.destroy
