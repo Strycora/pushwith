@@ -13,16 +13,14 @@ class WorkoutsController < ApplicationController
       redirect_if_not_in_group and return
       render :new
     
-   # @workout = Workout.new
   end
 
   def create
-   # @workout = @workout_group.workouts.build(workout_params)
+
     @workout = Workout.new(workout_params)
     if @workout.save
       redirect_to workout_group_workouts_path
     else
-      #flash.now[:error] = @workout.errors.full_messages
       render :new
     end
   end
@@ -37,13 +35,7 @@ class WorkoutsController < ApplicationController
   end
 
   def show
-    if @workout.workout_group_id != @workout_group.id
-      flash[:error] = ["Workout is not for this group"]
-      redirect_to workout_group_path(@workout_group)
-    end
 
-
-    
   end
 
   def edit
@@ -53,7 +45,6 @@ class WorkoutsController < ApplicationController
     if @workout.update(workout_params)
       redirect_to workout_group_workout_path 
     else
-      flash.now[:error] = @workout.errors.full_messages
       render :edit
     end
   end
