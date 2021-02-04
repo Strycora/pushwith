@@ -9,3 +9,7 @@
 <%= link_to "Edit", edit_workout_group_path(@workout_group)%>
 
 <%= link_to "Delete", workout_group_path(@workout_group), method: "delete" %>
+
+<%if @user_group %>
+  <%= link_to "Leave Workout Group", user_group_path(@user_group), method: "delete" %>
+<% end %>

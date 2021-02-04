@@ -14,7 +14,9 @@ class WorkoutGroupsController < ApplicationController
 
   def show
     if @workout_group
-      @user_groups = @workout_group.user_groups.all
+      @user_groups = @workout_group.user_groups
+      
+      @user_group = @workout_group.find_current_user_group(current_user)
     else
       redirect_to workout_groups_path
     end

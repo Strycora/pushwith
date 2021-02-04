@@ -4,11 +4,17 @@ class WorkoutGroup < ApplicationRecord
   has_many :workouts, :dependent => :delete_all
   validates :name, presence: true
 
+
   accepts_nested_attributes_for :user_groups
   accepts_nested_attributes_for :workouts
 
   def self.search(query)
     where("name LIKE ?", "%#{query}%")
+  end
+
+
+  def find_current_user_group(current_user)
+    user_groups.where("user_id = ?", current_user.id).first
   end
 
 end

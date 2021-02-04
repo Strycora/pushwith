@@ -18,7 +18,7 @@ class UserGroupsController < ApplicationController
     if @user_group.save
       redirect_to workout_groups_path
     else
-      #flash.now[:error] = @user_group.errors.full_messages
+      flash.now[:error] = @user_group.errors.full_messages
       render :new
     end
   end
@@ -37,6 +37,7 @@ class UserGroupsController < ApplicationController
 
   def destroy
     @user_group.destroy
+    redirect_to workout_groups_path
   end
 
 
