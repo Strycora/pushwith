@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
       login_user
       redirect_to workout_groups_path
     else
-      redirect_to "/login"
+      redirect_to root_path
     end
   end
 
