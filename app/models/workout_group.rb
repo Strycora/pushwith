@@ -8,9 +8,8 @@ class WorkoutGroup < ApplicationRecord
   accepts_nested_attributes_for :user_groups
   accepts_nested_attributes_for :workouts, reject_if: :all_blank
 
-  def self.search(query)
-    where("name LIKE ?", "%#{query}%")
-  end
+
+   scope :search, ->(query) {where("name LIKE ?", "%#{query}%")}
 
 
   def find_current_user_group(current_user)
