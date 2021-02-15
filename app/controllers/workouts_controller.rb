@@ -5,7 +5,7 @@ class WorkoutsController < ApplicationController
   before_action :redirect_if_workout_group_not_found, only: [:index, :show, :edit]
   before_action :redirect_if_workout_not_found, only:[:show, :edit, :update, :destroy]
   before_action :redirect_if_not_in_group, only:[:edit, :update, :destroy]
-  before_action :redirect_if_not_workout_group_match, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_if_not_workout_group_match, only: [:show, :edit, :update]
 
  
 
