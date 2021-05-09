@@ -7,7 +7,7 @@ PushWith is a Ruby on Rails application that allows gym members to connect with 
 This program was created using ruby 2.6.1 and rails 6.1.1. It also uses Materialize CSS 1.0.0 for the styling. The database is written in SQLite3 version 1.4 and has a branch with a PostGres database for Heroku hosting.
 
 ## Launch
-In order to run this program, fork and clone the Github repository, run 'bundle install' and 'rails:webpacker' in the terminal, migrate the databases by running rails db:migrate, create a .env file in the root directory of the app, and create a google oauth client id in the google developer console and add the client key to the .env file as GOOGLE_CLIENT_KEY= and add the secret to the .env as GOOGLE_CLIENT_SECRET=. Then the application will be ready to run!
+In order to run this program, fork and clone the Github repository, run 'bundle install' and 'rails:webpacker' in the terminal, migrate the databases by running rails db:migrate, create a .env file in the root directory of the app, and create a google oauth client id in the google developer console and add the client key to the .env file as GOOGLE_CLIENT_KEY= and add the secret to the .env as GOOGLE_CLIENT_SECRET=. Then the application will be ready to run by typing in the command 'rails s'!
 
 ## Features
 
