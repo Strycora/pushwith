@@ -1,7 +1,7 @@
 # README - PushWith
 
 ## Introduction
-PushWith is a Ruby on Rails application that allows gym members to connect with each other through workout groups, and share their workouts by posting them to the workout group's page. I created PushWith in order to practice building a fully functional Ruby on Rails application featuring full CRUD functionality, partials and helpers, join tables, and user authentication.
+PushWith is a Ruby on Rails application that allows gym members to connect with each other through workout groups, and share their workouts by posting them to the workout group's page. I created PushWith in order to practice building a fully functional Ruby on Rails application featuring full CRUD functionality, an MVC structure, nested resources and nested forms, partials and helpers, join tables, and user authentication.
 
 ## Technologies
 This program was created using ruby 2.6.1 and rails 6.1.1. It also uses Materialize CSS 1.0.0 for the styling. The database is written in SQLite3 version 1.4 and has a branch with a PostGres database for Heroku hosting.
