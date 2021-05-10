@@ -16,3 +16,4 @@ In order to run this program, fork and clone the Github repository, run 'bundle 
 -  Users can create and join workout groups
 -  Users can create, view, edit, and delete workouts for workout groups that they are in
 -  Users can edit the name of a workout group they're in or delete the workout group
+-  Users are associated to workout groups through a UserGroups join table that facilitates a many to many relationship between users and workout groups
